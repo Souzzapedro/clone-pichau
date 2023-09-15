@@ -1,0 +1,68 @@
+nav {
+  background-color: #303030;
+  width: 100%;
+}
+
+.logo img {
+  width: 200px;
+}
+
+
+.btn-carrinho {
+  background-color: #009e2a;
+  color: #fff;
+  border: none;
+  display: flex;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 7px;
+  margin: 10px 0;
+}
+.btn-carrinho p {
+  margin: 0;
+  text-align: right;
+}
+.btn-carrinho i {
+  font-size: 25px;
+}
+#carrinho {
+  font-weight: 600;
+  font-size: 19px;
+}
+#quantidade-produtos {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 0px;
+}
+
+
+
+nav .btns {
+  display: flex;
+  color: #fff;
+  list-style: none;
+  margin: 0;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: 30px;
+}
+
+.link i {
+  font-size: 25px;
+  color: #e90313;
+}
+
+.text-top {
+  font-size: 10px;
+  margin: 0;
+  line-height: 10px;
+}
+.text-bottom {
+  font-size: 14px;
+  margin: 0;
+  font-weight: 600;
+}
