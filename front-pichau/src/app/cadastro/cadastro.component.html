@@ -1,7 +1,50 @@
 <div class="container">
-  <h1>CADASTRO DE PRODUTOS</h1>
-  <div class="form-group">
-    <input type="text" class="pesquisar" placeholder="Digite o que você procura...">
-    <button><i class="bi bi-search"></i></button>
+
+  <div class="div-cadastro">
+
+    <form [formGroup]="form" class="col d-flex justify-content-between flex-column">
+      <div>
+
+        <h1 class="mt-5">Cadastro de Produtos</h1>
+        <div class="form-group mb-3">
+          <input type="text" placeholder="Nome" formControlName="nome">
+        </div>
+        <div class="form-group mb-3">
+          <input type="text" placeholder="Preço antes" formControlName="precoAntes" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', min: 0, max: 999.999 }">
+        </div>
+        <div class="form-group mb-3">
+          <input type="text" placeholder="Preço" formControlName="preco" currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', align: 'left', min: 0.0, max: 999.999 }">
+        </div>
+
+
+        <div class="drop-area mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)" *ngIf="!imagemUrl">
+          Arraste e solte a imagem aqui
+        </div>
+      </div>
+
+      <button (click)="onSubmit()" class="btn-salvar"><p>SALVAR</p></button>
+    </form>
+
+    <div class="card col-1">
+      <div class="imagem">
+        <div class="overlay"></div>
+        <img [src]="imagemUrl ? imagemUrl : '../../assets/img/placeholder-image.jpg'" alt="Pré-visualização">
+      </div>
+      <div class="textos">
+        <p class="nome-produto">{{ form.get('nome')?.value }}</p>
+        <p class="preco-antes">de <s>{{ form.get('precoAntes')?.value | currency:'BRL'  }}</s> por:</p>
+        <p class="forma-pagamento">à vista</p>
+        <p class="preco-avista">{{ form.get('preco')?.value * 0.85 | currency:'BRL'  }}</p>
+        <p class="desconto-pix">no PIX com 15% desconto</p>
+        <div class="traco-vermelho"></div>
+        <p class="preco-normal">{{ form.get('preco')?.value | currency:'BRL'  }}</p>
+        <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">{{ form.get('preco')?.value / 12 | currency:'BRL'  }}</strong></p>
+        <p class="pagamento-cartao">sem juros no cartão</p>
+      </div>
+    </div>
   </div>
-</div>
+
+</div>S
+
+
+

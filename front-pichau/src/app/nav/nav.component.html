@@ -8,7 +8,11 @@
       /></a>
     </div>
 
-    <div class="d-flex align-items-center">
+    <a class="link-cadastro" routerLink="/cadastro" *ngIf="responsivo && !rotaCadastro"><i class="bi bi-bag-plus-fill"></i></a>
+    <a class="link-produtos-voltar" routerLink="/produtos" *ngIf="responsivo && rotaCadastro"><i class="bi bi-arrow-left-circle-fill"></i></a>
+
+
+    <div class="d-flex align-items-center" *ngIf="!responsivo">
       <ul class="btns">
         <li class="link">
           <a routerLink="/cadastro"><i class="bi bi-person-circle"></i></a>

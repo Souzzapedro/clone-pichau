@@ -4,123 +4,27 @@
 
 
 <section class="container produtos">
-  <div class="card col-2">
+
+  <div class="card" *ngFor="let produto of produtos">
     <div class="imagem">
       <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
+      <img
+      [src]="produto.imagem == null ? '../../assets/img/placeholder-image.jpg' : produto.urlImage"
+      [alt]="produto.imagem == null ? 'Sem imagem' : produto.imagem.nome"
+      class="img"
+    />
     </div>
     <div class="textos">
-      <p class="nome-produto">FONE DE OUVIDO INTRA AURICULAR EDIFIER TWS1 PRO 2, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
+      <p class="nome-produto">{{ produto.nome }}</p>
+      <p class="preco-antes">de <s>{{ produto.preco.antes | currency:'BRL'  }}</s> por:</p>
       <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
+      <p class="preco-avista">{{ produto.preco * 0.85 | currency:'BRL'  }}</p>
       <p class="desconto-pix">no PIX com 15% desconto</p>
       <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
+      <p class="preco-normal">{{ produto.preco | currency:'BRL'  }}</p>
+      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">{{ produto.preco / 12 | currency:'BRL'  }}</strong></p>
       <p class="pagamento-cartao">sem juros no cartão</p>
     </div>
   </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">FONE DE OUVIDO INTRA AURICULAR EDIFIER TWS1 PRO 2, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">FONE DE OUVIDO INTRA AURICULAR EDIFIER TWS1 PRO 2, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">ETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">FONE DE 2, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">FONE DE OUVIDO INDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDTRA AURICULAR EDIFIER TWS1 PRO 2, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
-  <div class="card col-2">
-    <div class="imagem">
-      <div class="overlay"></div>
-      <img src="https://media.pichau.com.br/media/catalog/product/cache/ef72d3c27864510e5d4c0ce69bade259/t/w/tws1-pro2_1.jpg" alt="img">
-    </div>
-    <div class="textos">
-      <p class="nome-produto">FONE DE, BLUETOOTH, PRETO, TWS1-PRO2</p>
-      <p class="preco-antes">de <s>R$ 470,47</s> por:</p>
-      <p class="forma-pagamento">à vista</p>
-      <p class="preco-avista">R$ 359,90</p>
-      <p class="desconto-pix">no PIX com 15% desconto</p>
-      <div class="traco-vermelho"></div>
-      <p class="preco-normal">R$ 423,41</p>
-      <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">R$35,28</strong></p>
-      <p class="pagamento-cartao">sem juros no cartão</p>
-    </div>
-  </div>
+
 </section>

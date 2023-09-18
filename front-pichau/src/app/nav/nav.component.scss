@@ -1,6 +1,11 @@
 nav {
   background-color: #303030;
   width: 100%;
+  overflow: auto;
+  height: 78px;
+}
+nav .container {
+  height: 100%;
 }
 
 .logo img {
@@ -65,4 +70,15 @@ nav .btns {
   font-size: 14px;
   margin: 0;
   font-weight: 600;
+}
+
+
+
+.link-cadastro {
+  font-size: 30px;
+  color: #e90313;
+}
+.link-produtos-voltar {
+  font-size: 34px;
+  color: #009e2a;
 }
