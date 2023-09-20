@@ -31,8 +31,8 @@ public class ImagemController {
 	private ImagemRepository imagemRepository;
 
 	@PostMapping
-	public ResponseEntity<?> salvarImagem(@RequestParam("file") MultipartFile files) {
-		return imagemService.salvar(files);
+	public ResponseEntity<?> salvarImagem(@RequestParam("file") MultipartFile[] files, @RequestParam("idProduto") String idProduto) {
+		return imagemService.salvar(files, idProduto);
 	}
 	
 	@GetMapping
@@ -74,6 +74,11 @@ public class ImagemController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	@GetMapping(value = "/produto/{idProduto}")
+	public ResponseEntity<List<Imagem>> listarImagensByProduto(@PathVariable("idProduto") String idProduto) {
+		return ResponseEntity.status(HttpStatus.OK).body(imagemRepository.findByIdProduto(idProduto));
 	}
 	
 

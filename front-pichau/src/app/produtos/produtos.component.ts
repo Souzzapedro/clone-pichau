@@ -5,50 +5,54 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 @Component({
   selector: 'app-produtos',
   templateUrl: './produtos.component.html',
-  styleUrls: ['./produtos.component.scss']
+  styleUrls: ['./produtos.component.scss'],
 })
-export class ProdutosComponent implements OnInit{
-
+export class ProdutosComponent implements OnInit {
   produtos: any[] = [];
+  imagens: any;
 
   constructor(
     private service: ProdutosService,
     private sanitizer: DomSanitizer
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getProdutos();
+    this.getImagens();
   }
 
   getProdutos() {
-    this.service.listar()
-      .subscribe(
-        produtos => {
+    this.service.listar().subscribe(
+      (produtos) => {
+        this.produtos = produtos;
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 
-          // Adicionando a URL valida para as imagens de cada produto.
-          produtos.map((produto: any) => {
-            if(produto.imagem != null) {
+  getImagens() {
+    this.service.getImagens().subscribe(
+      imagens => {
+        const imagensArray = Object.values(imagens);
+        this.imagens = imagensArray;
+      }
+    );
+  }
 
-              let dadosImagem: undefined;
-              this.service.getImagem(produto.imagem).subscribe(
-                res => {
+  getFirstImagemProduto(idProduto: number) {
+    if(this.imagens) {
+      const imagensFiltradas = this.imagens.filter((imagem: any) => imagem.idProduto == idProduto);
 
-                  const urlImage = this.criarUrlDaImagem(res.dados, this.obterTipoDeArquivo(res.nome));
-                  this.produtos.push({ ...produto, urlImage });
-
-                });
-
-            }else {
-              this.produtos.push(produto);
-            }
-          });
-
-          console.log(this.produtos);
-        },
-        error => {
-          console.error(error);
-        }
-        );
+      if (imagensFiltradas.length > 0) {
+        return this.criarUrlDaImagem(imagensFiltradas[0].dados, this.obterTipoDeArquivo(imagensFiltradas[0].nome));
+      } else {
+        return "../../assets/img/placeholder-image.jpg";
+      }
+    }else {
+      return "../../assets/img/placeholder-image.jpg";
+    }
   }
 
   criarUrlDaImagem(dadosDaImagem: string, tipoDaImagem: any): SafeUrl {
@@ -68,5 +72,4 @@ export class ProdutosComponent implements OnInit{
 
     return null;
   }
-
 }

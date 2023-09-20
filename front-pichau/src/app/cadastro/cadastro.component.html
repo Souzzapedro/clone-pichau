@@ -3,7 +3,7 @@
   <div class="div-cadastro">
 
     <form [formGroup]="form" class="col d-flex justify-content-between flex-column">
-      <div>
+      <div >
 
         <h1 class="mt-5">Cadastro de Produtos</h1>
         <div class="form-group mb-3">
@@ -17,8 +17,21 @@
         </div>
 
 
-        <div class="drop-area mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)" *ngIf="!imagemUrl">
+        <div class="drop-area mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)" *ngIf="imagens.length === 0">
           Arraste e solte a imagem aqui
+        </div>
+
+
+        <div class="mb-3">
+          <input class="form-control" type="file" id="formFileMultiple" (change)="onChange($event)" multiple>
+        </div>
+
+        <div class="preview-imagens mt-3" *ngIf="imagens.length > 0">
+          <div class="img" *ngFor="let imagem of imagens">
+            <div class="overlay"></div>
+            <i class="bi bi-trash-fill"></i>
+            <img  [src]="imagem" alt="Pré-visualização">
+          </div>
         </div>
       </div>
 
@@ -28,7 +41,7 @@
     <div class="card col-1">
       <div class="imagem">
         <div class="overlay"></div>
-        <img [src]="imagemUrl ? imagemUrl : '../../assets/img/placeholder-image.jpg'" alt="Pré-visualização">
+        <img [src]="imagens.length > 0 ? imagens[0] : '../../assets/img/placeholder-image.jpg'" alt="Pré-visualização">
       </div>
       <div class="textos">
         <p class="nome-produto">{{ form.get('nome')?.value }}</p>

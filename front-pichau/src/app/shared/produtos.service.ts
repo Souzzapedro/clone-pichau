@@ -44,4 +44,10 @@ export class ProdutosService {
   getImagemView(id: number): Observable<any> {
     return this.http.get(`http://localhost:8080/imagens/${id}/view`);
   }
+  getImagensByProduto(idProduto: number) {
+    return this.http.get(`http://localhost:8080/imagens/produto/${idProduto}`);
+  }
+  getImagens(){
+    return this.http.get(`http://localhost:8080/imagens`);
+  }
 }

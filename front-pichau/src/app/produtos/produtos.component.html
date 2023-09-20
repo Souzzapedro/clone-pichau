@@ -9,8 +9,8 @@
     <div class="imagem">
       <div class="overlay"></div>
       <img
-      [src]="produto.imagem == null ? '../../assets/img/placeholder-image.jpg' : produto.urlImage"
-      [alt]="produto.imagem == null ? 'Sem imagem' : produto.imagem.nome"
+      [src]="getFirstImagemProduto(produto.id)"
+      alt="Imagem produto"
       class="img"
     />
     </div>

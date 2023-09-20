@@ -30,9 +30,6 @@ public class Produto {
 	@JsonInclude(Include.NON_NULL)
 	@NotNull
 	private BigDecimal preco;
-
-	
-	private Long imagem;
 	
 	public Long getId() {
 		return id;
@@ -64,14 +61,6 @@ public class Produto {
 
 	public void setPreco(BigDecimal preco) {
 		this.preco = preco;
-	}
-
-	public Long getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(Long imagem) {
-		this.imagem = imagem;
 	}
 
 

@@ -27,7 +27,7 @@ export class NavComponent implements OnInit {
   }
 
 
-  // Função para verificar o tamanho da tela e atualizar a variável
+  // Função para verificar o tamanho da tela e   atualizar a variável
   verificarTamanhoTela() {
     this.responsivo = window.innerWidth < 1200; // Por exemplo, considere 1200 pixels como o limite para tela pequena
     this.rotaCadastro = this.router.url === '/cadastro';
