@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './cadastro.component.html',
   styleUrls: ['./cadastro.component.scss']
 })
-export class CadastroComponent implements OnInit{
+export class CadastroComponent implements OnInit {
 
   form!: FormGroup;
 
@@ -22,11 +22,10 @@ export class CadastroComponent implements OnInit{
     private service: ProdutosService,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer
-  ) {}
+  ) { }
 
 
   ngOnInit(): void {
-
     this.form = this.formBuilder.group({
       id: [null],
       nome: [
@@ -40,78 +39,48 @@ export class CadastroComponent implements OnInit{
       precoAntes: [null, Validators.required],
       preco: [null, Validators.required]
     });
-
   }
 
 
   onSubmit() {
-    if(this.form.valid){
-    console.log(this.form.value);
+    if (this.form.valid) {
+      console.log(this.form.value);
       // SALVANDO PRODUTO
       this.service.salvar(this.form.value).subscribe(
         (produtoSalvo: any) => {
 
           // SALVANDO IMAGEM
-          if(this.files.length > 0) {
-            for(let i = 0; i < this.files.length; i++) {
-              console.log("Entrou: "+ produtoSalvo.id);
+          if (this.files.length > 0) {
+            for (let i = 0; i < this.files.length; i++) {
               const formData: FormData = new FormData();
               formData.append('file', this.files[i]);
               formData.append('idProduto', produtoSalvo.id);
 
-              console.log(formData);
               this.service.uploadImagem(formData).subscribe(res => console.log(res));
             }
           }
 
           this.form.reset();
+          this.files = [];
+          this.renderizarImagens();
+          console.log(this.imagens.length);
 
         },
         (error) => {
           console.error('Erro ao adicionar produto: ', error);
         }
       );
-    }else {
+    } else {
       console.log("Formulario Inválido");
     }
   }
 
 
-  onCreate() {
-    console.log(this.form.value);
-    this.service.salvar(this.form.value).subscribe(
-      (resposta: any) => {
-        this.form.reset();
-        this.imagens = [];
-      },
-      (error) => {
-        console.error('Erro ao adicionar produto: ', error);
-      }
-    );
-  }
 
-  onChange(event : any) {
-    this.files = event.target.files;
-    this.renderizarImagens();
-  }
 
-/*   renderizarPrimeiraImagem() {
-    if (this.files && this.files[0]) {
-      const file = this.files[0];
-      const reader = new FileReader();
-
-      reader.onload = (e: any) => {
-        // O resultado da leitura será a URL da imagem
-        //this.imagemUrl = e.target.result;
-      };
-
-      // Lê o arquivo como uma URL de dados (base64)
-      reader.readAsDataURL(file);
-    }
-  } */
 
   renderizarImagens() {
-    this.imagens = []; // Limpe o array de URLs antes de renderizar novamente
+    this.imagens = [];
 
     for (let i = 0; i < this.files.length; i++) {
       const file = this.files[i];
@@ -124,52 +93,57 @@ export class CadastroComponent implements OnInit{
 
       // Lê o arquivo como uma URL de dados (base64)
       reader.readAsDataURL(file);
-
-      console.log(this.imagens);
     }
   }
 
-
-
-
-
-   // Função para converter data URL em Blob
-/*    dataURLtoBlob(dataURL: string): Blob {
-    const byteString = atob(dataURL.split(',')[1]);
-    const mimeString = dataURL.split(',')[0].split(':')[1].split(';')[0];
-    const arrayBuffer = new ArrayBuffer(byteString.length);
-    const uint8Array = new Uint8Array(arrayBuffer);
-    for (let i = 0; i < byteString.length; i++) {
-      uint8Array[i] = byteString.charCodeAt(i);
+  // Selecionar files
+  onChange(event: any) {
+    const filesArray: File[] = Array.from(event.target.files);
+  
+    for (const file of filesArray) {
+      if (this.files.length < 6) {
+        this.files.push(file);
+      } else {
+        console.log("Número de imagens excedido");
+        break;
+      }
     }
-    return new Blob([arrayBuffer], { type: mimeString });
-  } */
-
+  
+    this.renderizarImagens();
+  }
+  
+  
+  
+  // Arrastar e soltar
   onDrop(event: DragEvent): void {
     event.preventDefault();
     const droppedFiles = event.dataTransfer?.files;
-
+    
     if (droppedFiles) {
       for (let i = 0; i < droppedFiles.length; i++) {
-        this.files.push(droppedFiles[i]);
+        if(this.files.length < 6) {
+          this.files.push(droppedFiles[i]);
+        }else {
+          console.log("Número de imagens excedido");
+          break;          
+        }
       }
       this.renderizarImagens();
     }
-
+    
   }
-
   onDragOver(event: DragEvent): void {
     event.preventDefault();
   }
 
-/*   displayImage(file: File): void {
-    const reader = new FileReader();
-    reader.onload = (e: any) => {
-      this.imagemUrl = e.target.result;
-      this.imagem = new File([this.dataURLtoBlob(e.target.result)], file.name);
-    };
-    reader.readAsDataURL(file);
-  } */
+
+  removerImagem(index: number): void {
+    if (index >= 0) {
+      this.files.splice(index, 1); // Remove o arquivo pelo índice
+      this.renderizarImagens();
+    }
+  }
+
 
 
 
@@ -183,12 +157,11 @@ export class CadastroComponent implements OnInit{
     if (!nomeDoArquivo) {
       return null;
     }
-
     const extensao = nomeDoArquivo.match(/\.([^.]+)$/);
-
     if (extensao && extensao.length > 1) {
       return `image/${extensao[1].toLowerCase()}`;
     }
     return null;
   }
+
 }

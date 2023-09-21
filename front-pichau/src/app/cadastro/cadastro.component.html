@@ -17,20 +17,17 @@
         </div>
 
 
-        <div class="drop-area mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)" *ngIf="imagens.length === 0">
-          Arraste e solte a imagem aqui
+        <div class="drop-area mb-3" (drop)="onDrop($event)" (dragover)="onDragOver($event)" (click)="inputfile.click()" *ngIf="imagens.length < 6">
+          Arraste ou selecione uma imagem
+          <input #inputfile class="form-control" type="file" id="formFileMultiple" (change)="onChange($event)" multiple>
         </div>
 
 
-        <div class="mb-3">
-          <input class="form-control" type="file" id="formFileMultiple" (change)="onChange($event)" multiple>
-        </div>
-
-        <div class="preview-imagens mt-3" *ngIf="imagens.length > 0">
-          <div class="img" *ngFor="let imagem of imagens">
+        <div class="preview-imagens mb-3" *ngIf="imagens.length > 0">
+          <div class="img" *ngFor="let imagem of imagens; let i = index" [style.background-image]="'url(' + imagem + ')'">
             <div class="overlay"></div>
-            <i class="bi bi-trash-fill"></i>
-            <img  [src]="imagem" alt="Pré-visualização">
+            <i (click)="removerImagem(i)" class="bi bi-x-circle-fill"></i>            
+            <div class="backgroud-branco"></div>
           </div>
         </div>
       </div>
