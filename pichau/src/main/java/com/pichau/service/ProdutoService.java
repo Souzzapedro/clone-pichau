@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.pichau.model.Produto;
+import com.pichau.model.TipoAnuncio;
 import com.pichau.repository.ProdutoRepository;
 import com.pichau.service.exception.ProdutoNaoEncontradaException;
 
@@ -22,6 +23,7 @@ public class ProdutoService {
 	
 	public Produto salvar(Produto produto) {
 		produto.setId(null);
+		produto.setTipoAnuncio(TipoAnuncio.OFERTA);
 		return produtoRepository.save(produto);
 	}
 	

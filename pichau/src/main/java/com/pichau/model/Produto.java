@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,6 +32,10 @@ public class Produto {
 	@JsonInclude(Include.NON_NULL)
 	@NotNull
 	private BigDecimal preco;
+	
+	@JsonInclude(Include.NON_NULL)
+	@Enumerated(EnumType.ORDINAL)
+	private TipoAnuncio tipoAnuncio;
 	
 	public Long getId() {
 		return id;
@@ -63,5 +69,13 @@ public class Produto {
 		this.preco = preco;
 	}
 
+	public TipoAnuncio getTipoAnuncio() {
+		return tipoAnuncio;
+	}
 
+	public void setTipoAnuncio(TipoAnuncio tipoAnuncio) {
+		this.tipoAnuncio = tipoAnuncio;
+	}
+
+	
 }
