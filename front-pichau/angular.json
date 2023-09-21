@@ -36,6 +36,7 @@
               "src/styles.scss"
             ],
             "scripts": [
+              "https://code.jquery.com/jquery-3.6.0.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.js",
               "node_modules/bootstrap/dist/js/bootstrap.js"
             ]

@@ -5,7 +5,7 @@
 
 <section class="container produtos">
 
-  <div class="card" *ngFor="let produto of produtos">
+  <div class="card" *ngFor="let produto of produtos" [routerLink]="['/produto/', produto.id]">
     <div class="imagem">
       <div class="overlay"></div>
       <img
@@ -24,6 +24,8 @@
       <p class="preco-normal">{{ produto.preco | currency:'BRL'  }}</p>
       <p class="pagamento-cartao">em até 12x de <strong class="preco-parcela">{{ produto.preco / 12 | currency:'BRL'  }}</strong></p>
       <p class="pagamento-cartao">sem juros no cartão</p>
+
+      <p>{{ produto.tipoAnuncio }}</p>
     </div>
   </div>
 

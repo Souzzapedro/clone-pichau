@@ -11,6 +11,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { SubNavComponent } from './sub-nav/sub-nav.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CurrencyMaskModule } from 'ng2-currency-mask';
+import { ProdutoViewComponent } from './produto-view/produto-view.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { CurrencyMaskModule } from 'ng2-currency-mask';
     NavComponent,
     ProdutosComponent,
     CadastroComponent,
-    SubNavComponent
+    SubNavComponent,
+    ProdutoViewComponent
   ],
   imports: [
     BrowserModule,

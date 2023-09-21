@@ -1,0 +1,151 @@
+* {
+  color: #fff;
+}
+
+.anuncio {
+  display: flex;
+  gap: 20px;
+}
+
+.imagem-principal {
+  width: 70%;
+  overflow: hidden;
+}
+.imagem-principal img{
+  width: 100%;
+  border-radius: 1px;
+  cursor: zoom-in;
+}
+
+
+.imagens {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+
+  .img {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    border-radius: 5px;
+    background-size: cover;
+    cursor: pointer;
+  }
+
+}
+
+
+
+.infos {
+  padding: 10px;
+
+  .nome-marca-avaliacao{
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+    margin-bottom: 16px;
+
+    .nome {
+      font-size: 25px;
+      line-height: 27px;
+      margin-bottom: 6px;
+    }
+    .marca {
+      font-size: 14px;
+      font-weight: 700;
+      span {
+        font-weight: 300;
+      }
+    }
+    .avaliacao {
+      i {
+        cursor: pointer;
+        font-size: 14px;
+      }
+      .quant-avaliacoes {
+        font-size: 14px;
+      }
+    }
+  }
+
+  .status-produto {
+    color: #00942a;
+    font-weight: 600;
+    font-size: 14px;
+  }
+  .sku-produto {
+    font-size: 14px;
+    font-weight: 700;
+    span {
+      font-weight: 300;
+    }
+  }
+
+  .precos {
+    p {
+      margin: 0;
+    }
+
+    .nome-produto {
+      color: #fff;
+    }
+
+    .preco-antes {
+      color: red;
+      font-size: 13px;
+      s {
+        color: red;
+      }
+    }
+
+    .forma-pagamento {
+      color: #00a202;
+      font-size: 11px;
+    }
+
+    .preco-avista {
+      color: #00a202;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .desconto-pix {
+      font-size: 13px;
+    }
+
+    .traco-vermelho {
+      height: 2px;
+      width: 15%;
+      background-color: red;
+      border-radius: 10px;
+      margin: 10px 20px;
+    }
+
+    .preco-normal {
+      color: red;
+      font-size: 18px;
+      font-weight: 600;
+    }
+
+    .pagamento-cartao {
+      font-size: 12px;
+    }
+
+    .preco-parcela {
+      color: red;
+    }
+
+
+
+    .bi-cash-coin {
+      color: #00942a;
+      margin: 0 20px;
+      font-size: 30px;
+    }
+    .bi-credit-card {
+      color: red;
+      margin: 0 20px;
+      font-size: 30px;
+    }
+  }
+
+}
